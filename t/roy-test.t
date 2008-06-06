@@ -5,8 +5,10 @@ print "1..102\n";
 if (-d "t") {
    chdir("t") || die "Can't chdir 't': $!";
    # fix all relative library locations
-   foreach (@INC) {
-      $_ = "../$_" unless m,^/,;
+   unless ($^O eq 'MSWin32') {
+       foreach (@INC) {
+           $_ = "../$_" unless m,^/,;
+       }
    }
 }
 

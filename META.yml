@@ -24,4 +24,4 @@ requires:
   Moose: 0
   Scalar::Util: 0
   URI: 0
-version: 0.021
+version: 0.022

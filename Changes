@@ -6,3 +6,6 @@ Revision history for URI-SmartURI
 0.021  2008-06-05 18:11:11
     Fixed redefined warnings from Class::C3 and a bug in AUTOLOAD
     during destruction.
+
+0.022  2008-06-06 13:10:05
+    Fixed test and import issues on Win32.

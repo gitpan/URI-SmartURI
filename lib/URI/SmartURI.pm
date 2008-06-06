@@ -8,11 +8,11 @@ URI::SmartURI - URIs with extra sugar
 
 =head1 VERSION
 
-Version 0.021
+Version 0.022
 
 =cut
 
-our $VERSION = '0.021';
+our $VERSION = '0.022';
 
 =head1 SYNOPSIS
 
@@ -36,14 +36,14 @@ use URI::URL;
 BEGIN {
     no strict 'refs';
     undef *{"Class::C3::$_"}
-        for qw/initialize uninitialize reinitialize/;
+        for grep !/:/, keys %{Class::C3::};
     delete $INC{'Class/C3.pm'}; # just in case
 }
 
 use Class::C3;
 use Class::C3::Componentised;
 use File::Find::Rule;
-use File::Spec::Functions qw/splitpath splitdir catfile/;
+use File::Spec::Functions qw/splitpath splitdir catfile catpath/;
 use List::MoreUtils 'firstidx';
 use Scalar::Util 'blessed';
 use List::Util 'first';
@@ -286,14 +286,15 @@ sub import {
         # What are portably valid characters in a directory name anyway?
     }
 
-    my @uri_pms = File::Find::Rule->extras({untaint => 1})->file->name('*.pm')
+    my @uri_pms = grep !/SmartURI\.pm\z/,
+        File::Find::Rule->extras({untaint => 1})->file->name('*.pm')
         ->in( File::Find::Rule->extras({untaint => 1})->directory
             ->maxdepth(1)->name('URI')->in(grep !ref($_), @INC)
         );
     my @new_uri_pms;
 
     for (@uri_pms) {
-        my ($dir, $file) = (splitpath($_))[1,2];
+        my ($vol, $dir, $file) = splitpath $_;
 
         my @dir          = grep $_ ne '', splitdir $dir;
         my @rel_dir      = @dir[(firstidx { $_ eq 'URI' } @dir) ..  $#dir];
@@ -301,7 +302,7 @@ sub import {
 
         my $new_class    = $class->_make_uri_class($mod, 0);
 
-        push @new_uri_pms, catfile(split /::/, $new_class) . '.pm';
+        push @new_uri_pms, (join '/' => (split /::/, $new_class)) . '.pm';
     }
 
 # HLAGHALAGHLAGHLAGHLAGH
