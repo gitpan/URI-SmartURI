@@ -8,11 +8,11 @@ URI::SmartURI - URIs with extra sugar
 
 =head1 VERSION
 
-Version 0.01
+Version 0.021
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.021';
 
 =head1 SYNOPSIS
 
@@ -31,6 +31,15 @@ our $VERSION = '0.02';
 
 use URI;
 use URI::URL;
+
+# Fix redefined warnings from Class::C3.
+BEGIN {
+    no strict 'refs';
+    undef *{"Class::C3::$_"}
+        for qw/initialize uninitialize reinitialize/;
+    delete $INC{'Class/C3.pm'}; # just in case
+}
+
 use Class::C3;
 use Class::C3::Componentised;
 use File::Find::Rule;
@@ -217,7 +226,8 @@ sub AUTOLOAD {
 # stolen from URI sources
     my $method = substr($AUTOLOAD, rindex($AUTOLOAD, '::')+2);
 
-    return if ! blessed $self || $method eq 'DESTROY'
+    return if ! blessed $self || ! blessed $self->obj
+                              || $method eq 'DESTROY'
                               || ! $self->obj->can($method);
 
     my $class  = $self->factory_class;
@@ -471,6 +481,15 @@ It even works with a subclass of L<URI::SmartURI>.
 
 I only wrote this functionality so that I could run the URI test suite without
 much modification, it has no real practical value.
+
+=head1 BUGS
+
+Please report any bugs or feature requests to
+C<bug-uri-smarturi at rt.cpan.org>, or through the web
+interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=URI-SmartURI>.  I
+will be notified, and then you'll automatically be notified of progress on your
+bug as I make changes.
 
 =head1 SUPPORT
 

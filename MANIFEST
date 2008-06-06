@@ -13,6 +13,7 @@ inc/Module/Install/WriteAll.pm
 lib/URI/SmartURI.pm
 Makefile.PL
 MANIFEST
+MANIFEST.SKIP
 META.yml
 README
 t/00-load.t

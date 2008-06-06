@@ -2,3 +2,7 @@ Revision history for URI-SmartURI
 
 0.02  2008-06-03 20:42:46
     Split from Catalyst::Plugin::SmartURI, converted to Moose
+
+0.021  2008-06-05 18:11:11
+    Fixed redefined warnings from Class::C3 and a bug in AUTOLOAD
+    during destruction.
