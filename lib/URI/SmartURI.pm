@@ -1,5 +1,7 @@
 package URI::SmartURI;
 
+use Class::C3::Componentised;
+use MRO::Compat;
 use Moose;
 
 =head1 NAME
@@ -12,7 +14,7 @@ Version 0.022
 
 =cut
 
-our $VERSION = '0.022';
+our $VERSION = '0.023';
 
 =head1 SYNOPSIS
 
@@ -31,17 +33,6 @@ our $VERSION = '0.022';
 
 use URI;
 use URI::URL;
-
-# Fix redefined warnings from Class::C3.
-BEGIN {
-    no strict 'refs';
-    undef *{"Class::C3::$_"}
-        for grep !/:/, keys %{Class::C3::};
-    delete $INC{'Class/C3.pm'}; # just in case
-}
-
-use Class::C3;
-use Class::C3::Componentised;
 use File::Find::Rule;
 use File::Spec::Functions qw/splitpath splitdir catfile catpath/;
 use List::MoreUtils 'firstidx';

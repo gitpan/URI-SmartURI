@@ -9,3 +9,7 @@ Revision history for URI-SmartURI
 
 0.022  2008-06-06 13:10:05
     Fixed test and import issues on Win32.
+
+0.023  2008-06-13 09:32:43
+    Removed ugly hack to turn off redefined warnings, this is fixed
+    in new MRO::Compat.

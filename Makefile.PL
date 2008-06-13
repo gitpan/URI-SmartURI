@@ -5,8 +5,8 @@ all_from 'lib/URI/SmartURI.pm';
 author   'Rafael Kitover <rkitover@cpan.org>';
 
 requires 'URI';
-requires 'Class::C3';
 requires 'Class::C3::Componentised';
+requires 'MRO::Compat' => '0.09';
 requires 'File::Find::Rule';
 requires 'List::Util';
 requires 'List::MoreUtils';
