@@ -6,15 +6,15 @@ use Moose;
 
 =head1 NAME
 
-URI::SmartURI - URIs with extra sugar
+URI::SmartURI - Subclassable and hostless URIs
 
 =head1 VERSION
 
-Version 0.022
+Version 0.024
 
 =cut
 
-our $VERSION = '0.023';
+our $VERSION = '0.024';
 
 =head1 SYNOPSIS
 
@@ -252,6 +252,7 @@ sub can { # of PORK BRAINS in MILK GRAVY, yum!!!
     my ($self, $method) = @_;
 
     my $existing = eval { $self->next::method($method) };
+    undef $@;
     return $existing if $existing;
 
     local $AUTOLOAD = ref($self)."::$method";

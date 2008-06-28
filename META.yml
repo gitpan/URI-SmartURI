@@ -1,11 +1,11 @@
 ---
-abstract: 'URIs with extra sugar'
+abstract: 'Subclassable and hostless URIs'
 author:
   - 'Rafael Kitover <rkitover@cpan.org>'
 build_requires:
   Test::More: 0
 distribution_type: module
-generated_by: 'Module::Install version 0.72'
+generated_by: 'Module::Install version 0.75'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -24,4 +24,4 @@ requires:
   Moose: 0
   Scalar::Util: 0
   URI: 0
-version: 0.023
+version: 0.024

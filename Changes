@@ -13,3 +13,6 @@ Revision history for URI-SmartURI
 0.023  2008-06-13 09:32:43
     Removed ugly hack to turn off redefined warnings, this is fixed
     in new MRO::Compat.
+
+0.024  2008-06-28 01:10:13
+    Clear $@ in ->can to not show spurious errors in Catalyst.
