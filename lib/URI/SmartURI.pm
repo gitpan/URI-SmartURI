@@ -10,11 +10,11 @@ URI::SmartURI - Subclassable and hostless URIs
 
 =head1 VERSION
 
-Version 0.024
+Version 0.025
 
 =cut
 
-our $VERSION = '0.024';
+our $VERSION = '0.025';
 
 =head1 SYNOPSIS
 
@@ -33,6 +33,7 @@ our $VERSION = '0.024';
 
 use URI;
 use URI::URL;
+use URI::QueryParam;
 use File::Find::Rule;
 use File::Spec::Functions qw/splitpath splitdir catfile catpath/;
 use List::MoreUtils 'firstidx';
@@ -63,7 +64,7 @@ Takes a uri $str and an optional scheme or hashref with a reference uri
 
     my $uri = URI::SmartURI->new('http://dev.catalyst.perl.org/');
 
-    my $uri = URI::SmartURI->new('/catwiki.toeat.com/', 'http');
+    my $uri = URI::SmartURI->new('/dev.catalyst.perl.org/new-wiki/', 'http');
 
     my $uri = URI::SmartURI->new(
         'http://search.cpan.org/~jrockway/Catalyst-Manual-5.701003/', 
@@ -540,4 +541,4 @@ no Moose;
 
 'LONG LIVE THE ALMIGHTY BUNGHOLE';
 
-# vim: expandtab shiftwidth=4 ts=4 tw=80:
+# vim: expandtab shiftwidth=4 tw=80:
