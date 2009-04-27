@@ -1,5 +1,6 @@
 package URI::SmartURI;
 
+use 5.8.1;
 use Moose;
 use mro 'c3';
 
@@ -9,11 +10,11 @@ URI::SmartURI - Subclassable and hostless URIs
 
 =head1 VERSION
 
-Version 0.026
+Version 0.027
 
 =cut
 
-our $VERSION = '0.026';
+our $VERSION = '0.027';
 
 =head1 SYNOPSIS
 
