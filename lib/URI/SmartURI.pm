@@ -1,8 +1,7 @@
 package URI::SmartURI;
 
-use Class::C3::Componentised;
-use MRO::Compat;
 use Moose;
+use mro 'c3';
 
 =head1 NAME
 
@@ -10,11 +9,11 @@ URI::SmartURI - Subclassable and hostless URIs
 
 =head1 VERSION
 
-Version 0.025
+Version 0.026
 
 =cut
 
-our $VERSION = '0.025';
+our $VERSION = '0.026';
 
 =head1 SYNOPSIS
 
@@ -39,7 +38,10 @@ use File::Spec::Functions qw/splitpath splitdir catfile catpath/;
 use List::MoreUtils 'firstidx';
 use Scalar::Util 'blessed';
 use List::Util 'first';
-require Exporter;
+use Exporter ();
+use Class::C3::Componentised;
+
+use namespace::clean -except => 'meta';
 
 has 'obj'           => (is => 'ro', isa => 'Object');
 has 'factory_class' => (is => 'ro', isa => 'ClassName');
@@ -272,6 +274,7 @@ sub import {
 
 # File::Find::Rule is not taint safe, and Module::Starter suggests running
 # tests in taint mode. Thanks for helping me with this one Somni!!!
+# UPDATE: I turned off taint in tests because it breaks local::lib
     {
         no warnings 'redefine';
         my $getcwd = \&File::Find::Rule::getcwd;
@@ -282,8 +285,11 @@ sub import {
     my @uri_pms = grep !/SmartURI\.pm\z/,
         File::Find::Rule->extras({untaint => 1})->file->name('*.pm')
         ->in( File::Find::Rule->extras({untaint => 1})->directory
-            ->maxdepth(1)->name('URI')->in(grep !ref($_), @INC)
+            ->maxdepth(1)->name('URI')->in(
+                grep { !ref($_) && -d $_ } @INC
+            )
         );
+
     my @new_uri_pms;
 
     for (@uri_pms) {
@@ -535,9 +541,7 @@ the same terms as Perl itself.
 
 =cut
 
-__PACKAGE__->meta->make_immutable;
-
-no Moose;
+__PACKAGE__->meta->make_immutable(inline_constructor => 0);
 
 'LONG LIVE THE ALMIGHTY BUNGHOLE';
 

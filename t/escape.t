@@ -1,10 +1,5 @@
 #!perl -w
 
-# failing tests in some places, for some reason I don't know, so turning this
-# test off.
-print "1..1\nok 1\n";
-exit 0;
-
 print "1..9\n";
 
 use URI::SmartURI '-import_uri_mods';

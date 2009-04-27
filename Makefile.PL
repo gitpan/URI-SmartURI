@@ -12,9 +12,13 @@ requires 'List::Util';
 requires 'List::MoreUtils';
 requires 'Scalar::Util';
 requires 'Moose';
+requires 'namespace::clean';
+
+if($] < 5.009_005) {
+    requires 'Class::C3::XS' => '0.08';
+    requires 'Class::C3' => '0.20';
+}
 
 build_requires 'Test::More';
-
-auto_install;
 
 WriteAll;
