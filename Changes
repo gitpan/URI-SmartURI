@@ -1,5 +1,10 @@
 Revision history for URI-SmartURI
 
+0.028  2009-04-27 20:11:54
+    - disable dns based tests in t/heuristic.t because some ISPs override
+      unknown DNS addresses
+    - fixed v-string version warning
+
 0.027  2009-04-27 15:24:22
     - accidentally shipped a Makefile
 

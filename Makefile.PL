@@ -4,6 +4,8 @@ name     'URI-SmartURI';
 all_from 'lib/URI/SmartURI.pm';
 author   'Rafael Kitover <rkitover@cpan.org>';
 
+perl_version '5.008001';
+
 requires 'URI';
 requires 'Class::C3::Componentised';
 requires 'MRO::Compat' => '0.09';
