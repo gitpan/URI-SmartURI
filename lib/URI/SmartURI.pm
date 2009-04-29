@@ -9,11 +9,11 @@ URI::SmartURI - Subclassable and hostless URIs
 
 =head1 VERSION
 
-Version 0.028
+Version 0.029
 
 =cut
 
-our $VERSION = '0.028';
+our $VERSION = '0.029';
 
 =head1 SYNOPSIS
 

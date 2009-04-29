@@ -1,5 +1,8 @@
 Revision history for URI-SmartURI
 
+0.029  2009-04-29 17:20:08
+    - fucked up, previous dist was missing inc/
+
 0.028  2009-04-27 20:11:54
     - disable dns based tests in t/heuristic.t because some ISPs override
       unknown DNS addresses
