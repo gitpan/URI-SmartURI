@@ -9,11 +9,11 @@ URI::SmartURI - Subclassable and hostless URIs
 
 =head1 VERSION
 
-Version 0.031
+Version 0.032
 
 =cut
 
-our $VERSION = '0.031';
+our $VERSION = '0.032';
 
 =head1 SYNOPSIS
 
@@ -253,6 +253,10 @@ sub can { # of PORK BRAINS in MILK GRAVY, yum!!!
     no strict 'refs';
     use vars qw/$CAN $AUTOLOAD/;
     my ($self, $method) = @_;
+
+    if ($method eq 'can') {
+        return \&can;
+    }
 
     my $existing = eval { $self->next::method($method) };
     undef $@;

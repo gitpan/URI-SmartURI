@@ -4,12 +4,15 @@ author:
   - 'Rafael Kitover, C<< <rkitover at cpan.org> >>'
   - 'Rafael Kitover <rkitover@cpan.org>'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
-  Test::More: 0
+  ExtUtils::MakeMaker: 6.59
+  Test::Fatal: 0
+  Test::More: 0.94
+  Test::NoWarnings: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
+  ExtUtils::MakeMaker: 6.59
 distribution_type: module
-generated_by: 'Module::Install version 1.00'
+dynamic_config: 1
+generated_by: 'Module::Install version 1.06'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -22,7 +25,7 @@ no_index:
 provides:
   URI::SmartURI:
     file: lib/URI/SmartURI.pm
-    version: 0.031
+    version: 0.032
 requires:
   Class::C3::Componentised: 0
   File::Find::Rule: 0
@@ -36,4 +39,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/rkitover/uri-smarturi.git
-version: 0.031
+version: 0.032
